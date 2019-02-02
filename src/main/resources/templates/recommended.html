@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:include="fragments/head :: head"></head>
+    <body>
+        <header th:include="fragments/navbar :: navbar"></header>
+
+        <div class="container">
+            <div th:if="${recMovies != null}">
+
+                <div class="row">
+                    <div th:each="movie : ${recMovies}" class="col-sm-4">
+                        <div class="card text-white bg-dark mb-3" style="width: 18rem; margin: 5%;">
+                            <img th:src="${movie.getPoster()}" class="card-img-top" th:alt="${movie.getTitle()}" style="height: 300px;">
+                            <div class="card-body" style="height: 300px;">
+                                <h5 class="card-title" th:text="${movie.getTitle()}"></h5>
+                                <h6 class="card-subtitle mb-2 text-muted" th:text="${movie.getGenre()}"></h6>
+                                <h6 class="card-subtitle mb-2 text-muted" th:text="${movie.year}"></h6>
+                                <h6 class="card-subtitle mb-2 text-muted" th:text="${movie.getImdbRating()}"></h6>
+                                <p class="card-text"><span th:text="${movie.getPlot()}"></span></p>
+                                <a title="See on IMDb" th:href="@{'https://www.imdb.com/title/' + ${movie.getImdbId()}}" class="imdb-button"><i class="fa fa-imdb fa-2x"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div th:unless="${recMovies != null}" style="margin: 2%;">
+                <div class="alert alert-dark" role="alert">
+                    You don't have any recommended movies
+                </div>
+            </div>
+
+        </div>
+
+        <script type="text/javascript"
+                src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+
+        <script type="text/javascript"
+                src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    </body>
+</html>

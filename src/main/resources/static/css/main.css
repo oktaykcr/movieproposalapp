@@ -1,0 +1,63 @@
+.form-control-borderless {
+    border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.page-link{
+    background-color: #343a40;
+    border: 1px solid #343a40;
+    color: #ffffff;
+}
+
+.page-item.active .page-link{
+    background-color: #5f6973;
+    border-color: #5f6973;
+}
+
+body {
+    background-size: cover;
+    background: url("../img/bg.jpg") no-repeat center fixed;
+}
+
+#search-input {
+    background-color:rgba(0,0,0,0) !important;
+    border:none !important;
+    color: whitesmoke;
+}
+
+/** WARNING ALERT **/
+
+.alert-dark{
+    border-color: #b7292d;
+    color: white;
+    text-align: center;
+    background-color: #340a0b;
+}
+
+/** CARD BUTTONS STYLE **/
+
+.imdb-button{
+    color: ghostwhite;
+    margin-right: 2%;
+}
+
+.imdb-button:hover{
+    color: #919198;
+}
+
+.fav-button{
+    color: red;
+    margin-right: 2%;
+    display: contents;
+}
+
+.fav-button:hover{
+    color: #ff878b;
+}
+
+

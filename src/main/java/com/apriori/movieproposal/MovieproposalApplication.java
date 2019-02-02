@@ -1,4 +1,4 @@
-package com.oktaykcr.movieproposal;
+package com.apriori.movieproposal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,4 +9,6 @@ public class MovieproposalApplication {
     public static void main(String[] args) {
         SpringApplication.run(MovieproposalApplication.class, args);
     }
+
 }
+

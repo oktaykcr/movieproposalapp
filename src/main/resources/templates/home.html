@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:include="fragments/head :: head"></head>
+    <body>
+
+        <header th:include="fragments/navbar.html :: navbar"></header>
+
+        <div class="container">
+            <br/>
+
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10 col-lg-8">
+                    <form id="search-form" th:action="@{/movies}" method="GET" class="card text-white bg-dark card-sm">
+                        <div class="card-body row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <i class="fas fa-search h4 text-body"></i>
+                            </div>
+                            <!--end of col-->
+                            <div class="col">
+                                <input id="search-input" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search movies" required>
+                            </div>
+                            <!--end of col-->
+                            <div class="col-auto">
+                                <button class="btn btn-lg btn-success" type="submit">Search</button>
+                            </div>
+                            <!--end of col-->
+                        </div>
+                    </form>
+                </div>
+                <!--end of col-->
+            </div>
+
+            <div th:if="${omdb != null}" style="margin-top: 2%;" class="row justify-content-md-center">
+
+                <div class="col col-lg-2">
+                </div>
+                <div class="col-md-auto">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" th:with="previousPage=${omdb.getCurrentPage() - 1}" th:href="@{'/movies/search/' + ${omdb.getSearchedMovieName()} + '/' + ${previousPage}}">Previous</a></li>
+                            <li class="page-item active"><a class="page-link" th:href="@{'/movies/search/' + ${omdb.getSearchedMovieName()} + '/' + ${omdb.getCurrentPage()}}" th:text="${omdb.getCurrentPage()}"></a></li>
+                            <li class="page-item"><a class="page-link" th:with="nextPage=${omdb.getCurrentPage() + 1}" th:href="@{'/movies/search/' + ${omdb.getSearchedMovieName()} + '/' + ${nextPage}}">Next</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col col-lg-2">
+                </div>
+
+            </div>
+
+            <div th:if="${omdb != null}">
+
+                <div class="row">
+                    <div th:each="movie : ${omdb.getSearch()}" class="col-sm-4">
+                        <div class="card text-white bg-dark mb-3" style="width: 18rem; margin: 5%;">
+                            <img th:src="${movie.getPosterURL()}" class="card-img-top" th:alt="${movie.getTitle()}" style="height: 300px;">
+                            <div class="card-body" style="height: 200px;">
+                                <h5 class="card-title" th:text="${movie.getTitle()}"></h5>
+                                <h6 class="card-subtitle mb-2 text-muted" th:text="${movie.getType()}"></h6>
+                                <p class="card-text">Year : <span th:text="${movie.getYear()}"></span></p>
+                                <a title="See on IMDb" th:href="@{'https://www.imdb.com/title/' + ${movie.getImdbID()}}" class="imdb-button"><i class="fa fa-imdb fa-2x"></i></a>
+                                <form th:action="@{'/movies/favorites/'+ ${omdb.getSearchedMovieName()} + '/' + ${omdb.getCurrentPage()} + '/' + ${movie.getImdbID()}}" method="POST" style="display: inline">
+                                    <button type="submit" title="Mark as Favorite" class="fav-button"><i class="fa fa-heart fa-2x"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <script type="text/javascript"
+                src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+
+        <script type="text/javascript"
+                src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript" th:src="@{/js/search.js}"></script>
+
+    </body>
+</html>

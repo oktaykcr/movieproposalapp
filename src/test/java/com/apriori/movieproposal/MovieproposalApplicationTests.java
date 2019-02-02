@@ -1,4 +1,4 @@
-package com.oktaykcr.movieproposal;
+package com.apriori.movieproposal;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,3 +14,4 @@ public class MovieproposalApplicationTests {
     }
 
 }
+
